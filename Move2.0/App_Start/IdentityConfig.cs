@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Move2._0.Models;
+using Move2._0.DAL;
 
 namespace Move2._0
 {

@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Move2._0.Models;
+using Move2._0.DAL;
 
 namespace Move2._0
 {
