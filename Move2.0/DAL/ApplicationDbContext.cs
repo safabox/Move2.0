@@ -5,6 +5,7 @@ using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Move2._0.Models;
+using Move2._0.Models.Move;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
@@ -37,6 +38,8 @@ namespace Move2._0.DAL
         public DbSet<Curso> Curso { get; set; }
         public DbSet<Pregunta> Pregunta { get; set; }
         public DbSet<Respuesta> Respuesta { get; set; }
+        public DbSet<Producto> Producto { get; set; }
+        public DbSet<Feature> Feature { get; set; }
 
 
 

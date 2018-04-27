@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace Move2._0.Models
+namespace Move2._0.Models.Move
 {
     public class Nivel
     {

@@ -243,14 +243,40 @@
     <Compile Include="Migrations\201804262244249_seedingRespuesta.Designer.cs">
       <DependentUpon>201804262244249_seedingRespuesta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804270144102_creacionEntidadesProductoyFeature.cs" />
+    <Compile Include="Migrations\201804270144102_creacionEntidadesProductoyFeature.Designer.cs">
+      <DependentUpon>201804270144102_creacionEntidadesProductoyFeature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804270152570_creacionRelacionEntreProductoyFeature.cs" />
+    <Compile Include="Migrations\201804270152570_creacionRelacionEntreProductoyFeature.Designer.cs">
+      <DependentUpon>201804270152570_creacionRelacionEntreProductoyFeature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804270153495_seedingFeature.cs" />
+    <Compile Include="Migrations\201804270153495_seedingFeature.Designer.cs">
+      <DependentUpon>201804270153495_seedingFeature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804270221518_fixEnColumnasDeProducto.cs" />
+    <Compile Include="Migrations\201804270221518_fixEnColumnasDeProducto.Designer.cs">
+      <DependentUpon>201804270221518_fixEnColumnasDeProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804270222274_seedingProducto.cs" />
+    <Compile Include="Migrations\201804270222274_seedingProducto.Designer.cs">
+      <DependentUpon>201804270222274_seedingProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804270234082_seedingProductoFeature.cs" />
+    <Compile Include="Migrations\201804270234082_seedingProductoFeature.Designer.cs">
+      <DependentUpon>201804270234082_seedingProductoFeature.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Curso.cs" />
+    <Compile Include="Models\Move\Curso.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Nivel.cs" />
-    <Compile Include="Models\Pregunta.cs" />
-    <Compile Include="Models\Respuesta.cs" />
+    <Compile Include="Models\Move\Feature.cs" />
+    <Compile Include="Models\Move\Producto.cs" />
+    <Compile Include="Models\Move\Nivel.cs" />
+    <Compile Include="Models\Move\Pregunta.cs" />
+    <Compile Include="Models\Move\Respuesta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -401,6 +427,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804262244249_seedingRespuesta.resx">
       <DependentUpon>201804262244249_seedingRespuesta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804270144102_creacionEntidadesProductoyFeature.resx">
+      <DependentUpon>201804270144102_creacionEntidadesProductoyFeature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804270152570_creacionRelacionEntreProductoyFeature.resx">
+      <DependentUpon>201804270152570_creacionRelacionEntreProductoyFeature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804270153495_seedingFeature.resx">
+      <DependentUpon>201804270153495_seedingFeature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804270221518_fixEnColumnasDeProducto.resx">
+      <DependentUpon>201804270221518_fixEnColumnasDeProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804270222274_seedingProducto.resx">
+      <DependentUpon>201804270222274_seedingProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804270234082_seedingProductoFeature.resx">
+      <DependentUpon>201804270234082_seedingProductoFeature.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

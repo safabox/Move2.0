@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Move2._0.DAL;
-using Move2._0.Models;
+using Move2._0.Models.Move;
 
 namespace Move2._0.Controllers.Api
 {
