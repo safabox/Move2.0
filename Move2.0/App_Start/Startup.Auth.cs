@@ -55,15 +55,15 @@ namespace Move2._0
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "214227499353025",
+               appSecret: "0b71de191708754b18633cc0e5e4a809");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "56968151962-fhqovrv88qe25racu6851k4cs9hcbftr.apps.googleusercontent.com",
+                ClientSecret = "hCjCzqFIZdUyKLJhh6uxoW8n"
+            });
         }
     }
 }

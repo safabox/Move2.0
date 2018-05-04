@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using Move2._0.Models;
 
-namespace Move2._0.Models.Move
+namespace Move2._0.Models.ShoppingCart
 {
-    public class Feature
+    public class ShoppingCart
     {
         [Required]
         public int Id { get; set; }
 
         [Required]
-        [Display(Name="Característica")]
-        public string Name { get; set; }
+        public string ApplicationUserId { get; set; }
 
-        public string Tooltip { get; set; }
 
         public virtual ICollection<Producto> Productos { get; set; }
+
     }
 }

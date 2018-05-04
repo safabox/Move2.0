@@ -20,7 +20,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44386</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -115,6 +115,9 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp, Version=106.2.2.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.2.2\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -203,7 +206,10 @@
     <Compile Include="Controllers\Api\PreguntasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
+    <Compile Include="Dto\Payer.cs" />
+    <Compile Include="Dto\PaymentDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -267,18 +273,30 @@
     <Compile Include="Migrations\201804270234082_seedingProductoFeature.Designer.cs">
       <DependentUpon>201804270234082_seedingProductoFeature.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804282250077_creacionDeEntidadesParaShoppingCart.cs" />
+    <Compile Include="Migrations\201804282250077_creacionDeEntidadesParaShoppingCart.Designer.cs">
+      <DependentUpon>201804282250077_creacionDeEntidadesParaShoppingCart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Move\Curso.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Move\Feature.cs" />
-    <Compile Include="Models\Move\Producto.cs" />
+    <Compile Include="Models\ShoppingCart\Client.cs" />
+    <Compile Include="Models\ShoppingCart\Feature.cs" />
+    <Compile Include="Models\ShoppingCart\OrderStatus.cs" />
+    <Compile Include="Models\ShoppingCart\PaymentStatus.cs" />
+    <Compile Include="Models\ShoppingCart\Producto.cs" />
     <Compile Include="Models\Move\Nivel.cs" />
     <Compile Include="Models\Move\Pregunta.cs" />
     <Compile Include="Models\Move\Respuesta.cs" />
+    <Compile Include="Models\ShoppingCart\Order.cs" />
+    <Compile Include="Models\ShoppingCart\OrderItem.cs" />
+    <Compile Include="Models\ShoppingCart\Payment.cs" />
+    <Compile Include="Models\ShoppingCart\ShoppingCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\ShoppingCart\PaymentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -383,11 +401,10 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Payment\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Dto\" />
-    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -446,6 +463,9 @@
     <EmbeddedResource Include="Migrations\201804270234082_seedingProductoFeature.resx">
       <DependentUpon>201804270234082_seedingProductoFeature.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804282250077_creacionDeEntidadesParaShoppingCart.resx">
+      <DependentUpon>201804282250077_creacionDeEntidadesParaShoppingCart.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -466,7 +486,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50135</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50135/</IISUrl>
+          <IISUrl>https://localhost:44386/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Move2._0.Models;
 using Move2._0.Models.Move;
+using Move2._0.Models.ShoppingCart;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
@@ -34,14 +35,28 @@ namespace Move2._0.DAL
             //modelBuilder.Entity<IdentityUserLogin>().ToTable("userlogin");
         }
 
+        #region Move
         public DbSet<Nivel> Nivel { get; set; }
         public DbSet<Curso> Curso { get; set; }
         public DbSet<Pregunta> Pregunta { get; set; }
         public DbSet<Respuesta> Respuesta { get; set; }
+        #endregion
+
+        #region ShoppingCart
         public DbSet<Producto> Producto { get; set; }
         public DbSet<Feature> Feature { get; set; }
 
+        public DbSet<ShoppingCart> ShoppingCart { get; set; }
+        public DbSet<Client> Client { get; set; }
 
+        public DbSet<PaymentStatus> PaymentStatus { get; set; }
+        public DbSet<Payment> Payment { get; set; }
+
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderItem> OrderItem { get; set; }
+        public DbSet<OrderStatus> OrderStatus { get; set; }
+
+        #endregion
 
 
     }

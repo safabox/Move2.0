@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace Move2._0.Models.Move
+namespace Move2._0.Models.ShoppingCart
 {
     public class Producto
     {
@@ -37,7 +37,7 @@ namespace Move2._0.Models.Move
 
         public virtual ICollection<Feature> Features { get; set; }
 
-
+        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
 
     }
 }
