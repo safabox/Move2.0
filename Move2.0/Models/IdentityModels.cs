@@ -3,7 +3,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-
+using System.ComponentModel.DataAnnotations;
+using System;
 namespace Move2._0.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
@@ -16,6 +17,28 @@ namespace Move2._0.Models
             // Add custom user claims here
             return userIdentity;
         }
+        [Required]
+        [Display(Name ="DNI")]
+
+        public int DNI { get; set; }
+
+
+        [Required]
+        [Display(Name ="Nombre")]
+        public string Name { get; set; }
+
+
+        [Required]
+        [Display( Name ="Apellido")]
+        public string  LastName { get; set; }
+
+
+        [Required]
+        [Display(Name ="Fecha de nacimiento")]
+        public DateTime BirthDay { get; set; }
+
+
+
     }
 
     

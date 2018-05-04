@@ -16,23 +16,24 @@ namespace Move2._0.Controllers
     public class PaymentController : Controller
     {
         private ApplicationDbContext _context = null;
-        
+
         // GET: Payment
         public ActionResult Index()
         {
             return View();
         }
-
+        [Authorize]
         public ActionResult Payment() {
 
             var paymentViewModel = new PaymentViewModel();
-            return View("Payment",paymentViewModel);
+            return View("Payment", paymentViewModel);
         }
 
 
 
         [HttpPost]
-        
+        [Authorize]
+        [ValidateAntiForgeryToken]
         public ActionResult ProcessPayment(PaymentViewModel payment)
         {
             if (!ModelState.IsValid)
@@ -60,7 +61,7 @@ namespace Move2._0.Controllers
                 var client = new RestClient(url);
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("Content-Type", "application/json");
-                string jsonData = JsonConvert.SerializeObject(paymentDto);
+                
                 request.AddJsonBody(paymentDto);
                
 
@@ -71,8 +72,6 @@ namespace Move2._0.Controllers
                 {
                     Console.WriteLine(a.id);
                 }
-
-
 
                 return RedirectToAction("Index", "Home");
             }

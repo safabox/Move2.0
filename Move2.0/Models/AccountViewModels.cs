@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+
 
 namespace Move2._0.Models
 {
@@ -8,6 +10,26 @@ namespace Move2._0.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Nombre")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Apellido")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "DNI")]
+        public int DNI { get; set; }
+
+        [Required]
+        [Display(Name = "Fecha de nacimiento")]
+        public DateTime BirthDay { get; set; }
+
+
+
+
     }
 
     public class ExternalLoginListViewModel
@@ -64,6 +86,23 @@ namespace Move2._0.Models
 
     public class RegisterViewModel
     {
+
+        [Required]
+        [Display(Name = "Nombre")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Apellido")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "DNI")]
+        public int DNI { get; set; }
+
+        [Required]
+        [Display(Name = "Fecha de nacimiento")]
+        public DateTime BirthDay { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

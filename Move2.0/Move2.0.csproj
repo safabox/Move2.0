@@ -203,11 +203,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\MoodleController.cs" />
     <Compile Include="Controllers\Api\PreguntasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
+    <Compile Include="Dto\Moodle\EnrolmentDto.cs" />
+    <Compile Include="Dto\Moodle\MoodleUserDto.cs" />
     <Compile Include="Dto\Payer.cs" />
     <Compile Include="Dto\PaymentDto.cs" />
     <Compile Include="Global.asax.cs">
@@ -276,6 +279,22 @@
     <Compile Include="Migrations\201804282250077_creacionDeEntidadesParaShoppingCart.cs" />
     <Compile Include="Migrations\201804282250077_creacionDeEntidadesParaShoppingCart.Designer.cs">
       <DependentUpon>201804282250077_creacionDeEntidadesParaShoppingCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805041759261_addingFieldsToApplicationUser.cs" />
+    <Compile Include="Migrations\201805041759261_addingFieldsToApplicationUser.Designer.cs">
+      <DependentUpon>201805041759261_addingFieldsToApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805041855345_seedingRoles.cs" />
+    <Compile Include="Migrations\201805041855345_seedingRoles.Designer.cs">
+      <DependentUpon>201805041855345_seedingRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805041909550_seedingUsers.cs" />
+    <Compile Include="Migrations\201805041909550_seedingUsers.Designer.cs">
+      <DependentUpon>201805041909550_seedingUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805041911187_seedingUserRoles.cs" />
+    <Compile Include="Migrations\201805041911187_seedingUserRoles.Designer.cs">
+      <DependentUpon>201805041911187_seedingUserRoles.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -402,6 +421,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Payment\Payment.cshtml" />
+    <Content Include="Views\Shared\_ShoppingCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -465,6 +485,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804282250077_creacionDeEntidadesParaShoppingCart.resx">
       <DependentUpon>201804282250077_creacionDeEntidadesParaShoppingCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805041759261_addingFieldsToApplicationUser.resx">
+      <DependentUpon>201805041759261_addingFieldsToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805041855345_seedingRoles.resx">
+      <DependentUpon>201805041855345_seedingRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805041909550_seedingUsers.resx">
+      <DependentUpon>201805041909550_seedingUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805041911187_seedingUserRoles.resx">
+      <DependentUpon>201805041911187_seedingUserRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
+
 using Move2._0.Models;
 
 namespace Move2._0.Controllers
@@ -151,10 +153,27 @@ namespace Move2._0.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    Name = model.Name,
+                    LastName = model.LastName,
+                    DNI = model.DNI,
+                    BirthDay = model.BirthDay
+                };
+                               
+
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+
+                    var roleSucursal = new RoleStore<IdentityRole>(new Move2._0.DAL.ApplicationDbContext());
+                    var roleAdmin = new RoleManager<IdentityRole>(roleSucursal);
+                    await roleAdmin.CreateAsync(new IdentityRole("User"));
+                    await UserManager.AddToRoleAsync(user.Id, "User");
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -367,10 +386,24 @@ namespace Move2._0.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    Name=model.Name,
+                    LastName=model.LastName,
+                    DNI=model.DNI,
+                    BirthDay=model.BirthDay
+                };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+
+                    var roleSucursal = new RoleStore<IdentityRole>(new Move2._0.DAL.ApplicationDbContext());
+                    var roleAdmin = new RoleManager<IdentityRole>(roleSucursal);
+                    await roleAdmin.CreateAsync(new IdentityRole("User"));
+                    await UserManager.AddToRoleAsync(user.Id, "User");
+
+
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {

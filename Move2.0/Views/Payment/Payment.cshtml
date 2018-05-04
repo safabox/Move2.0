@@ -46,11 +46,11 @@
         </ul>
         <input type="submit" class="js-submit" value="Pay!" />
     </fieldset>
- 
+    @Html.AntiForgeryToken()
 }
 @section scripts{
     <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
-    <script type="text/javascript" >
+    <script type="text/javascript">
 
 
         Mercadopago.setPublishableKey("TEST-72483728-9889-42bc-b847-f766ab07b32e");
@@ -134,7 +134,7 @@
 
         Mercadopago.getIdentificationTypes();
 
-      
+
 
         doSubmit = false;
         addEvent(document.querySelector('#pay'), 'submit', doPay);
@@ -143,17 +143,17 @@
             if (!doSubmit) {
                 var $form = document.querySelector('#pay');
 
-                Mercadopago.createToken($form, sdkResponseHandler); 
+                Mercadopago.createToken($form, sdkResponseHandler);
 
                 return false;
             }
         };
 
-          
 
-        
 
-    </script> 
-    
+
+
+    </script>
+
 }
 
