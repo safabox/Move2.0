@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using Move2._0.DAL;
+using Move2._0.Models.Move;
+using Move2._0.Models.ShoppingCart;
+using Move2._0.ViewModel.ShoppingCart;
+
 
 namespace Move2._0.ViewModel.ShoppingCart
 {
-    public class PaymentViewModel
+    public class CheckOutViewModel
     {
         [Required]
         [Display]
@@ -14,12 +19,11 @@ namespace Move2._0.ViewModel.ShoppingCart
         public string Email { get; set; }
 
         [Required]
-        public string  PaymentMethodId { get; set; }
+        public string PaymentMethodId { get; set; }
 
         [Required]
         public string Token { get; set; }
 
         public ClientViewModel Client { get; set; }
-
     }
 }

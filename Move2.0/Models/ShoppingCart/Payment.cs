@@ -26,7 +26,20 @@ namespace Move2._0.Models.ShoppingCart
 
         public PaymentStatus PaymentStatus { get; set; }
 
+        [Required]
+        [Display(Name ="Fecha de Creacion")]
+        public DateTime DateCreated { get; set; }
 
+        
+        [Display(Name = "Fecha de Aprobacion")]
+        public Nullable<DateTime> ApprovalDate { get; set; }
+
+        
+        [Display(Name = "Ultima Actualizacion")]
+        public Nullable<DateTime> LastUpdatedTime { get; set; }
+
+
+        public Nullable<int> MercadoPagoId { get; set; }
 
     }
 }

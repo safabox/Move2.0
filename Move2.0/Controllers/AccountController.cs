@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity.EntityFramework;
-
+using Move2._0.DAL;
 using Move2._0.Models;
 
 namespace Move2._0.Controllers
@@ -19,9 +19,10 @@ namespace Move2._0.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private ApplicationDbContext _context;
         public AccountController()
         {
+            _context = ApplicationDbContext.Create();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -53,6 +54,8 @@ namespace Move2._0.Controllers
                 _userManager = value;
             }
         }
+
+
 
         //
         // GET: /Account/Login
@@ -175,7 +178,9 @@ namespace Move2._0.Controllers
                     await UserManager.AddToRoleAsync(user.Id, "User");
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
+                    createClient(user);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -402,7 +407,7 @@ namespace Move2._0.Controllers
                     var roleAdmin = new RoleManager<IdentityRole>(roleSucursal);
                     await roleAdmin.CreateAsync(new IdentityRole("User"));
                     await UserManager.AddToRoleAsync(user.Id, "User");
-
+                    createClient(user);
 
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
@@ -440,6 +445,8 @@ namespace Move2._0.Controllers
         {
             if (disposing)
             {
+
+
                 if (_userManager != null)
                 {
                     _userManager.Dispose();
@@ -452,7 +459,7 @@ namespace Move2._0.Controllers
                     _signInManager = null;
                 }
             }
-
+            _context.Dispose();
             base.Dispose(disposing);
         }
 
@@ -514,5 +521,24 @@ namespace Move2._0.Controllers
             }
         }
         #endregion
+
+
+        private void createClient(ApplicationUser user) {
+
+            var client = new Move2._0.Models.ShoppingCart.Client() {
+                Name = user.Name,
+                LastName = user.LastName,
+                DNI = user.DNI,
+                ApplicationUserId = user.Id
+            };
+
+            this._context.Client.Add(client);
+            this._context.SaveChanges();
+
+
+
+        }
+
+
     }
 }

@@ -207,8 +207,10 @@
     <Compile Include="Controllers\Api\PreguntasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
+    <Compile Include="Dto\IdentificactionDto.cs" />
     <Compile Include="Dto\Moodle\EnrolmentDto.cs" />
     <Compile Include="Dto\Moodle\MoodleUserDto.cs" />
     <Compile Include="Dto\Payer.cs" />
@@ -296,6 +298,18 @@
     <Compile Include="Migrations\201805041911187_seedingUserRoles.Designer.cs">
       <DependentUpon>201805041911187_seedingUserRoles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805062333268_updatesPaymentDatesInformation.cs" />
+    <Compile Include="Migrations\201805062333268_updatesPaymentDatesInformation.Designer.cs">
+      <DependentUpon>201805062333268_updatesPaymentDatesInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805062336389_updatePaymentDatesToNullable.cs" />
+    <Compile Include="Migrations\201805062336389_updatePaymentDatesToNullable.Designer.cs">
+      <DependentUpon>201805062336389_updatePaymentDatesToNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805070048079_addClientFields.cs" />
+    <Compile Include="Migrations\201805070048079_addClientFields.Designer.cs">
+      <DependentUpon>201805070048079_addClientFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Move\Curso.cs" />
@@ -315,6 +329,8 @@
     <Compile Include="Models\ShoppingCart\ShoppingCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\ShoppingCart\CheckOutViewModel.cs" />
+    <Compile Include="ViewModel\ShoppingCart\ClientViewModel.cs" />
     <Compile Include="ViewModel\ShoppingCart\PaymentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -422,6 +438,7 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Payment\Payment.cshtml" />
     <Content Include="Views\Shared\_ShoppingCart.cshtml" />
+    <Content Include="Views\Order\CheckOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -497,6 +514,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805041911187_seedingUserRoles.resx">
       <DependentUpon>201805041911187_seedingUserRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805062333268_updatesPaymentDatesInformation.resx">
+      <DependentUpon>201805062333268_updatesPaymentDatesInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805062336389_updatePaymentDatesToNullable.resx">
+      <DependentUpon>201805062336389_updatePaymentDatesToNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805070048079_addClientFields.resx">
+      <DependentUpon>201805070048079_addClientFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

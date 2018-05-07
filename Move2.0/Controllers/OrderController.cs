@@ -4,8 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Move2._0.DAL;
-using Move2._0.Models.ShoppingCart;
-using Move2._0.Models.Move;
 using Move2._0.ViewModel.ShoppingCart;
 using Move2._0.Dto;
 using RestSharp;
@@ -14,12 +12,13 @@ using Microsoft.AspNet.Identity;
 
 namespace Move2._0.Controllers
 {
-    public class PaymentController : Controller
+    public class OrderController : Controller
     {
-        private ApplicationDbContext _context = null;
 
+        private ApplicationDbContext _context;
 
-        public PaymentController() {
+        public OrderController()
+        {
             _context = ApplicationDbContext.Create();
         }
 
@@ -30,43 +29,46 @@ namespace Move2._0.Controllers
 
         }
 
-        // GET: Payment
+        // GET: Order
         public ActionResult Index()
         {
             return View();
         }
         [Authorize]
-        public ActionResult Payment() {
+        public ActionResult CheckOut()
+        {
 
             var userId = this.User.Identity.GetUserId();
             var client = _context.Client.SingleOrDefault(u => u.ApplicationUserId == userId);
-            var paymentViewModel = new PaymentViewModel() { Email = this.User.Identity.GetUserName()};
-            paymentViewModel.Client = new ClientViewModel() {
+            var checkOutViewModel = new CheckOutViewModel() { Email = this.User.Identity.GetUserName() };
+            checkOutViewModel.Client = new ClientViewModel()
+            {
                 DNI = client.DNI,
                 LastName = client.LastName,
                 Name = client.Name
             };
-            return View("Payment", paymentViewModel);
+            return View("CheckOut", checkOutViewModel);
+
         }
+
 
 
 
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult ProcessPayment(PaymentViewModel payment)
+        public ActionResult ProcessOrder(CheckOutViewModel order)
         {
             if (!ModelState.IsValid)
             {
-                var paymentViewModel = new PaymentViewModel();
-
-                return View("Payment", paymentViewModel);
+                var checkOutViewModel = new CheckOutViewModel();
+                return View("CheckOut", checkOutViewModel);
             }
             else
             {
 
-                var paymentDto = createPayment(100, 1,payment);
-                
+                var paymentDto = createPayment(100, 1, order);
+
                 string access_token = "TEST-7606658901206724-040414-1683b7d185a04c0476793b0298f8dd11-44741038";
                 string api = "https://api.mercadopago.com/v1/payments";
                 string url = api + "?access_token=" + access_token;
@@ -74,9 +76,9 @@ namespace Move2._0.Controllers
                 var client = new RestClient(url);
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("Content-Type", "application/json");
-                
+
                 request.AddJsonBody(paymentDto);
-                
+
                 IRestResponse response = client.Execute(request);
 
                 if (response.StatusCode == System.Net.HttpStatusCode.Created)
@@ -86,11 +88,12 @@ namespace Move2._0.Controllers
                     return RedirectToAction("Index", "Home");
 
                 }
-                else {
+                else
+                {
 
-                    var paymentViewModel = new PaymentViewModel();
+                    var checkOutViewModel = new CheckOutViewModel();
 
-                    return View("Payment", paymentViewModel);
+                    return View("CheckOut", checkOutViewModel);
 
                 }
 
@@ -98,15 +101,13 @@ namespace Move2._0.Controllers
             }
         }
 
-
-
-        private PaymentDto createPayment(int transactionAmount, int installments, PaymentViewModel payment)
+        private PaymentDto createPayment(int transactionAmount, int installments, CheckOutViewModel order)
         {
             var paymentDto = new PaymentDto()
             {
                 transaction_amount = transactionAmount,
-                token = payment.Token,
-                payment_method_id = payment.PaymentMethodId,
+                token = order.Token,
+                payment_method_id = order.PaymentMethodId,
                 description = "Test para Move 2.0",
                 installments = installments,
                 payer = getPayer(this.User.Identity.GetUserName()),

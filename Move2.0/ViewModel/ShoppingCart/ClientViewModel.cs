@@ -4,26 +4,22 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace Move2._0.Models.ShoppingCart
+namespace Move2._0.ViewModel.ShoppingCart
 {
-    public class Client
+    public class ClientViewModel
     {
-        [Required]
-        public int Id { get; set; }
 
         [Required]
+        [Display(Name ="Nombre")]
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Apellido")]
         public string LastName { get; set; }
 
         [Required]
+        [Display(Name = "DNI")]
         public int DNI { get; set; }
-
-        [Required]
-        public string ApplicationUserId { get; set; }
-
-        public virtual ICollection<Payment> Payments { get; set; }
 
     }
 }

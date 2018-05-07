@@ -1,0 +1,196 @@
+﻿@model Move2._0.ViewModel.ShoppingCart.CheckOutViewModel
+@{
+    ViewBag.Title = "CheckOut";
+}
+
+<h2>CheckOut</h2>
+
+@using (Html.BeginForm("ProcessOrder", "Order", FormMethod.Post, new { @class = "form-horizontal", @name = "pay", @id = "pay" }))
+{
+    
+    
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Datos personales</h3>
+            <br />
+            <div class="form-group row">
+                @Html.LabelFor(M => Model.Email, new { @class = "col-md-3 col-form-label" })
+                @Html.TextBoxFor(M => Model.Email, new { @class = "form-control col-md-9", @placeholder = "name@example.com", @readonly = "readonly" })
+                @Html.ValidationMessageFor(M => Model.Email)
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(M => Model.Client.Name, new { @class = "col-md-3 col-form-label" })
+                @Html.TextBoxFor(M => Model.Client.Name, new { @class = "form-control col-md-9", @readonly = "readonly" })
+                @Html.ValidationMessageFor(M => Model.Client.Name)
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(M => Model.Client.LastName, new { @class = "col-md-3 col-form-label" })
+                @Html.TextBoxFor(M => Model.Client.LastName, new { @class = "form-control col-md-9", @readonly = "readonly" })
+                @Html.ValidationMessageFor(M => Model.Client.LastName)
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(M => Model.Client.DNI, new { @class = "col-md-3 col-form-label" })
+                @Html.TextBoxFor(M => Model.Client.DNI, new { @class = "form-control col-md-9", @readonly = "readonly" })
+                @Html.ValidationMessageFor(M => Model.Client.DNI)
+            </div>
+            <hr />
+            <h3>Metodo de pago</h3>
+            <br />
+            <div class="form-group row">
+                <label for="cardNumber" class="col-md-3 col-form-label">Numero de tarjeta</label>
+                <input type="text" id="cardNumber" data-checkout="cardNumber" placeholder="4509 9535 6623 3704" class="form-control col-md-9" />
+            </div>
+            <div class="form-group row">
+                <label for="securityCode" class="col-md-3 col-form-label">Codigo de seguridad</label>
+                <input type="text" id="securityCode" data-checkout="securityCode" placeholder="123" class="form-control col-md-9" />
+            </div>
+            <div class="form-group row">
+                <label for="cardExpirationMonth" class="col-md-3 col-form-label">Mes</label>
+                <input type="text" id="cardExpirationMonth" data-checkout="cardExpirationMonth" placeholder="12" class="form-control col-md-2" />
+
+                <label for="cardExpirationYear" class="col-md-3 col-form-label text-right">Año</label>
+                <input type="text" id="cardExpirationYear" data-checkout="cardExpirationYear" placeholder="2015" class="form-control col-md-2" />
+            </div>
+            <div class="form-group row">
+                <label for="cardholderName" class="col-md-3 col-form-label">Nombre en la tarjeta</label>
+                <input type="text" id="cardholderName" data-checkout="cardholderName" placeholder="APRO" class="form-control col-md-9" />
+            </div>
+            <div class="form-group row">
+                <label for="docType" class="col-md-3 col-form-label">Tipo de documento</label>
+                <select id="docType" data-checkout="docType" class="form-control col-md-3"></select>
+
+                <label for="docNumber" class="col-md-2 col-form-label text-right">Numero</label>
+                <input type="text" id="docNumber" data-checkout="docNumber" placeholder="12345678" class="form-control col-md-4" />
+            </div>
+
+
+        </div>
+        <div class="col-md-4">
+            <div style="position:fixed">
+                <input type="submit" class="js-submit btn btn-success btn-lg" value="Pagar" />
+                <h3  class="text-right">Resumen de la orden</h3>
+                <div class="row">
+                    <p class="text-right"> asdasdasdasdasd </p>
+                </div>
+                <div class="row">
+                    <hr />
+                    <strong>Total: </strong> 100
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+        <input type="submit" class="js-submit btn btn-success btn-lg" value="Pagar" />
+
+    @Html.AntiForgeryToken()
+    }
+    @section scripts{
+        <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+        <script type="text/javascript">
+
+
+            Mercadopago.setPublishableKey("TEST-72483728-9889-42bc-b847-f766ab07b32e");
+
+            function addEvent(el, eventName, handler) {
+                if (el.addEventListener) {
+                    el.addEventListener(eventName, handler);
+                } else {
+                    el.attachEvent('on' + eventName, function () {
+                        handler.call(el);
+                    });
+                }
+            };
+
+            function getBin() {
+                var ccNumber = document.querySelector('input[data-checkout="cardNumber"]');
+                return ccNumber.value.replace(/[ .-]/g, '').slice(0, 6);
+            };
+
+            function guessingPaymentMethod(event) {
+                var bin = getBin();
+
+                if (event.type == "keyup") {
+                    if (bin.length >= 6) {
+                        Mercadopago.getPaymentMethod({
+                            "bin": bin
+                        }, setPaymentMethodInfo);
+                    }
+                } else {
+                    setTimeout(function () {
+                        if (bin.length >= 6) {
+                            Mercadopago.getPaymentMethod({
+                                "bin": bin
+                            }, setPaymentMethodInfo);
+                        }
+                    }, 100);
+                }
+            };
+
+            function setPaymentMethodInfo(status, response) {
+                if (status == 200) {
+                    // do somethings ex: show logo of the payment method
+                    var form = document.querySelector('#pay');
+
+                    if (document.querySelector("input[name=paymentMethodId]") == null) {
+                        var paymentMethod = document.createElement('input');
+                        paymentMethod.setAttribute('name', "paymentMethodId");
+                        paymentMethod.setAttribute('type', "hidden");
+                        paymentMethod.setAttribute('value', response[0].id);
+
+                        form.appendChild(paymentMethod);
+                    } else {
+                        document.querySelector("input[name=paymentMethodId]").value = response[0].id;
+                    }
+                }
+            };
+
+            addEvent(document.querySelector('input[data-checkout="cardNumber"]'), 'keyup', guessingPaymentMethod);
+            addEvent(document.querySelector('input[data-checkout="cardNumber"]'), 'change', guessingPaymentMethod);
+
+
+
+
+            function sdkResponseHandler(status, response) {
+                if (status != 200 && status != 201) {
+                    alert("verify filled data " + JSON.stringify(response));
+                } else {
+
+                    var form = document.querySelector('#pay');
+
+                    var card = document.createElement('input');
+                    card.setAttribute('name', "token");
+                    card.setAttribute('type', "hidden");
+                    card.setAttribute('value', response.id);
+                    alert('token: ' + response.id)
+                    form.appendChild(card);
+                    doSubmit = true;
+                    form.submit();
+                }
+            };
+
+            Mercadopago.getIdentificationTypes();
+
+
+
+            doSubmit = false;
+            addEvent(document.querySelector('#pay'), 'submit', doPay);
+            function doPay(event) {
+                event.preventDefault();
+                if (!doSubmit) {
+                    var $form = document.querySelector('#pay');
+
+                    Mercadopago.createToken($form, sdkResponseHandler);
+
+                    return false;
+                }
+            };
+
+
+
+
+
+        </script>
+
+    }
