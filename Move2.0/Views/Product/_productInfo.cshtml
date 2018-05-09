@@ -1,0 +1,27 @@
+﻿@model Move2._0.ViewModel.ShoppingCart.ProductInfoViewModel
+
+@{
+    var recomendado = Model.Recomendado ? "border rounded border-success" : "";
+}
+
+<div class="@recomendado">
+    <h3 class="text-center">@Model.Producto.Name</h3>
+
+    @foreach (var feature in Model.Features)
+    {
+
+        var color = feature.Productos.Contains(Model.Producto) ? "move-feature-green" : "move-feature-grey";
+        <br />
+
+        <div class="move-feature @color"></div>
+
+    }
+    <hr />
+    <p >
+        <h4 class="text-center">$@Model.Producto.Price finales x mes <br /><span class="small">Suscripción x 3 meses</span></h4>
+    </p>
+    <div class="text-center">
+        <a class="btn btn-outline-success btn-sm" href="@Url.Action("CheckOut","Order")">SUBSCRIBIRME AL PLAN</a>
+    </div>
+    <br />
+</div>

@@ -1,0 +1,12 @@
+﻿@model List<Move2._0.Models.ShoppingCart.Feature>
+<div>
+    <h3>Nuestros cursos</h3>
+    
+        @foreach (var feature in Model)
+        {
+            <br />
+            <div class="row text-left">@feature.Name</div>
+
+        }
+        <hr />
+</div>

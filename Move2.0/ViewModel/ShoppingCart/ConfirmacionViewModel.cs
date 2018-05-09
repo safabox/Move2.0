@@ -13,5 +13,6 @@ namespace Move2._0.ViewModel.ShoppingCart
         public string PaymentMethodId { get; set; }
         public double TransactionAmount { get; set; }
         public int Installments { get; set; }
+        public int OrderNumber { get; set; }
     }
 }

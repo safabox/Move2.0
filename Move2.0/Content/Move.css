@@ -1,1 +1,42 @@
-﻿
+﻿@font-face {
+    font-family: "Raleway", sans-serif;
+    src: url("https://fonts.googleapis.com/css?family=Raleway");
+}
+body {
+    font-family: Raleway;
+}
+
+
+.move-list-none {
+    list-style-type:none;
+    font-size:16px;
+}
+
+.move-feature {
+    width: 22.5px;
+    height: 22.5px;
+    border-radius: 50px;
+    margin-left:50%;
+}
+.move-feature-green {
+    background-color: rgba(65, 195, 182,1);
+}
+.move-feature-grey {
+    background-color: rgba(204, 204, 204, 1);
+}
+
+hr {
+    padding-left: -15px !important;
+    padding-right: -15px !important;
+}
+
+
+
+.move_brand {
+    width: 153px;
+    height: 59px;
+}
+
+h1, h2, h3 {
+    color:#3D9BE9 ;
+}

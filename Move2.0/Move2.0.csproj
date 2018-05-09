@@ -209,12 +209,15 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="Dto\IdentificactionDto.cs" />
     <Compile Include="Dto\Moodle\EnrolmentDto.cs" />
     <Compile Include="Dto\Moodle\MoodleUserDto.cs" />
     <Compile Include="Dto\Payer.cs" />
     <Compile Include="Dto\PaymentDto.cs" />
+    <Compile Include="Dto\ShoppingCart\FeatureDto.cs" />
+    <Compile Include="Dto\ShoppingCart\ProductoDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -349,6 +352,8 @@
     <Compile Include="ViewModel\ShoppingCart\ClientViewModel.cs" />
     <Compile Include="ViewModel\ShoppingCart\ConfirmacionViewModel.cs" />
     <Compile Include="ViewModel\ShoppingCart\PaymentViewModel.cs" />
+    <Compile Include="ViewModel\ShoppingCart\ProductIndexViewModel.cs" />
+    <Compile Include="ViewModel\ShoppingCart\ProductInfoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -357,6 +362,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\move_brand.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Move.css" />
@@ -457,6 +463,9 @@
     <Content Include="Views\Shared\_ShoppingCart.cshtml" />
     <Content Include="Views\Order\CheckOut.cshtml" />
     <Content Include="Views\Order\Confirmacion.cshtml" />
+    <Content Include="Views\Product\Productos.cshtml" />
+    <Content Include="Views\Product\_productInfo.cshtml" />
+    <Content Include="Views\Product\_FeaturesInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

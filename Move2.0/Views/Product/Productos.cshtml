@@ -1,0 +1,26 @@
+﻿@model Move2._0.ViewModel.ShoppingCart.ProductIndexViewModel
+@{
+    ViewBag.Title = "Productos";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        @Html.Partial("_FeaturesInfo",Model.Features)
+    </div>
+    @foreach (var product in Model.Productos)
+    {
+        var recomendado = false;
+        if (product.Id == 1) { recomendado = true; }
+        <div class="col-md-3">
+            @Html.Partial("_productInfo",
+                new Move2._0.ViewModel.ShoppingCart.ProductInfoViewModel() {
+                    Features = Model.Features,
+                    Producto = product,
+                    Recomendado = recomendado }
+            )
+        </div>
+    }
+
+    
+</div>
+

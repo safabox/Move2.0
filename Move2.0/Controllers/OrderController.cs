@@ -94,6 +94,7 @@ namespace Move2._0.Controllers
                         Installments = 1,
                         PaymentMethodId = checkOutOrderVm.PaymentMethodId,
                         TransactionAmount = 100,
+                        OrderNumber=order.Id
                         
                     };
 
@@ -122,7 +123,7 @@ namespace Move2._0.Controllers
                         confirmacionViewModel.PaymentStatusDescription = "El pago ha sido rechazado";
                     }
 
-
+                    _context.SaveChanges();
 
                     
                     
