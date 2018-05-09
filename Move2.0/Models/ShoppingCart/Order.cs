@@ -18,17 +18,24 @@ namespace Move2._0.Models.ShoppingCart
         [Display(Name ="Fecha de creacion")]
         public DateTime CreatedDate { get; set; }
 
-        [Required]
+        
         [Display(Name = "Fecha de aprobacion")]
-        public DateTime approvalDate { get; set; }
+        public Nullable<DateTime> approvalDate { get; set; }
 
         [Required]
         public int OrderStatusId { get; set; }
-
         public OrderStatus Status { get; set; }
 
+        
 
-        public ICollection<OrderItem> OrderItems { get; set; }
+        [Required]
+        public int PaymentId { get; set; }
+        public Payment Payment { get; set; }
 
+        [Required]
+        public int ClientId { get; set; }
+        public Client Client { get; set; }
+
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

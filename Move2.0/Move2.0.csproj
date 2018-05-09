@@ -310,6 +310,22 @@
     <Compile Include="Migrations\201805070048079_addClientFields.Designer.cs">
       <DependentUpon>201805070048079_addClientFields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805081311017_relacionEntreOrderyClient.cs" />
+    <Compile Include="Migrations\201805081311017_relacionEntreOrderyClient.Designer.cs">
+      <DependentUpon>201805081311017_relacionEntreOrderyClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805081401442_seedingOrderStatus.cs" />
+    <Compile Include="Migrations\201805081401442_seedingOrderStatus.Designer.cs">
+      <DependentUpon>201805081401442_seedingOrderStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805081439522_seedingPaymentStatus.cs" />
+    <Compile Include="Migrations\201805081439522_seedingPaymentStatus.Designer.cs">
+      <DependentUpon>201805081439522_seedingPaymentStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805081620435_setOrderApprovalDateNullable.cs" />
+    <Compile Include="Migrations\201805081620435_setOrderApprovalDateNullable.Designer.cs">
+      <DependentUpon>201805081620435_setOrderApprovalDateNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Move\Curso.cs" />
@@ -331,6 +347,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\ShoppingCart\CheckOutViewModel.cs" />
     <Compile Include="ViewModel\ShoppingCart\ClientViewModel.cs" />
+    <Compile Include="ViewModel\ShoppingCart\ConfirmacionViewModel.cs" />
     <Compile Include="ViewModel\ShoppingCart\PaymentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -439,6 +456,7 @@
     <Content Include="Views\Payment\Payment.cshtml" />
     <Content Include="Views\Shared\_ShoppingCart.cshtml" />
     <Content Include="Views\Order\CheckOut.cshtml" />
+    <Content Include="Views\Order\Confirmacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -523,6 +541,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805070048079_addClientFields.resx">
       <DependentUpon>201805070048079_addClientFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805081311017_relacionEntreOrderyClient.resx">
+      <DependentUpon>201805081311017_relacionEntreOrderyClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805081401442_seedingOrderStatus.resx">
+      <DependentUpon>201805081401442_seedingOrderStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805081439522_seedingPaymentStatus.resx">
+      <DependentUpon>201805081439522_seedingPaymentStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805081620435_setOrderApprovalDateNullable.resx">
+      <DependentUpon>201805081620435_setOrderApprovalDateNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

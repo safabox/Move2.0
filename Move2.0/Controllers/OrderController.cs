@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Move2._0.DAL;
+using Move2._0.Models.ShoppingCart;
 using Move2._0.ViewModel.ShoppingCart;
 using Move2._0.Dto;
 using RestSharp;
@@ -57,7 +58,7 @@ namespace Move2._0.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult ProcessOrder(CheckOutViewModel order)
+        public ActionResult ProcessOrder(CheckOutViewModel checkOutOrderVm)
         {
             if (!ModelState.IsValid)
             {
@@ -67,7 +68,7 @@ namespace Move2._0.Controllers
             else
             {
 
-                var paymentDto = createPayment(100, 1, order);
+                var paymentDto = createPaymentDto(100, 1, checkOutOrderVm);
 
                 string access_token = "TEST-7606658901206724-040414-1683b7d185a04c0476793b0298f8dd11-44741038";
                 string api = "https://api.mercadopago.com/v1/payments";
@@ -83,9 +84,49 @@ namespace Move2._0.Controllers
 
                 if (response.StatusCode == System.Net.HttpStatusCode.Created)
                 {
-                    var payments = JsonConvert.DeserializeObject(response.Content);
+                    dynamic paymentResponse = JsonConvert.DeserializeObject(response.Content);
+                    
 
-                    return RedirectToAction("Index", "Home");
+                    Payment payment = createPayment(checkOutOrderVm.Client, Convert.ToInt32(paymentResponse.id.Value));
+                    Order order = createOrder(checkOutOrderVm.Client,payment);
+                    ConfirmacionViewModel confirmacionViewModel = new ConfirmacionViewModel()
+                    {
+                        Installments = 1,
+                        PaymentMethodId = checkOutOrderVm.PaymentMethodId,
+                        TransactionAmount = 100,
+                        
+                    };
+
+                    if (paymentResponse.status.Value == "approved")
+                    {
+                        payment.PaymentStatusId = PaymentStatus.APPROVED;
+                        order.OrderStatusId = OrderStatus.APPROVED;
+                        order.approvalDate = DateTime.Now;
+                        confirmacionViewModel.PaymentStatus = "Aprobado";
+                        confirmacionViewModel.PaymentStatusId = PaymentStatus.APPROVED;
+                        confirmacionViewModel.PaymentStatusDescription = "El pago ha sido aprobado";
+                    }
+                    else if (paymentResponse.status.Value == "in_process") {
+                        payment.PaymentStatusId = PaymentStatus.PENDING;
+                        order.OrderStatusId = OrderStatus.PENDING;
+                        confirmacionViewModel.PaymentStatus = "Pendiente";
+                        confirmacionViewModel.PaymentStatusId = PaymentStatus.PENDING;
+                        confirmacionViewModel.PaymentStatusDescription = "El pago esta siendo procesado";
+
+                    }
+                    else{
+                        payment.PaymentStatusId = PaymentStatus.REJECTED;
+                        order.OrderStatusId = OrderStatus.REJECTED;
+                        confirmacionViewModel.PaymentStatus = "Rechazado";
+                        confirmacionViewModel.PaymentStatusId = PaymentStatus.REJECTED;
+                        confirmacionViewModel.PaymentStatusDescription = "El pago ha sido rechazado";
+                    }
+
+
+
+                    
+                    
+                    return View("Confirmacion", confirmacionViewModel);
 
                 }
                 else
@@ -101,7 +142,39 @@ namespace Move2._0.Controllers
             }
         }
 
-        private PaymentDto createPayment(int transactionAmount, int installments, CheckOutViewModel order)
+        private Order createOrder(ClientViewModel client, Payment payment)
+        {
+
+            var cliente = _context.Client.SingleOrDefault(c => c.DNI == client.DNI);
+            
+            var order = new Order();
+            order.CreatedDate = DateTime.Now;
+            order.ClientId = cliente.Id;
+            order.ApplicationUserId = cliente.ApplicationUserId;
+            order.OrderStatusId = OrderStatus.SUBMIT;
+            order.PaymentId = payment.Id;
+            order =_context.Order.Add(order);
+            _context.SaveChanges();
+            return order;
+
+
+        }
+
+        private Payment createPayment(ClientViewModel client, int mercadoPagoId)
+        {
+            var paymentDb = new Payment();
+            paymentDb.DateCreated = DateTime.Now;
+            paymentDb.LastUpdatedTime = DateTime.Now;
+            paymentDb.PaymentStatusId = PaymentStatus.PENDING;
+            paymentDb.MercadoPagoId = mercadoPagoId;
+            paymentDb = _context.Payment.Add(paymentDb);
+            _context.SaveChanges();
+            return paymentDb;
+        }
+
+
+
+        private PaymentDto createPaymentDto(int transactionAmount, int installments, CheckOutViewModel order)
         {
             var paymentDto = new PaymentDto()
             {

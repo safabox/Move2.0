@@ -19,5 +19,9 @@ namespace Move2._0.Models.ShoppingCart
         [Display(Name = "Descripcion")]
         public string Description { get; set; }
 
+        public const int APPROVED = 1;
+        public const int PENDING = 2;
+        public const int REJECTED = 3;
+
     }
 }

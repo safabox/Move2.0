@@ -25,5 +25,7 @@ namespace Move2._0.Models.ShoppingCart
 
         public virtual ICollection<Payment> Payments { get; set; }
 
+        public virtual ICollection<Order> Orders { get; set; }
+
     }
 }
