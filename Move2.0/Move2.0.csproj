@@ -333,6 +333,10 @@
     <Compile Include="Migrations\201805121810152_PlacementTest.Designer.cs">
       <DependentUpon>201805121810152_PlacementTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805121903491_PlacementTestCorreccion.cs" />
+    <Compile Include="Migrations\201805121903491_PlacementTestCorreccion.Designer.cs">
+      <DependentUpon>201805121903491_PlacementTestCorreccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Move\Curso.cs" />
@@ -573,6 +577,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805121810152_PlacementTest.resx">
       <DependentUpon>201805121810152_PlacementTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805121903491_PlacementTestCorreccion.resx">
+      <DependentUpon>201805121903491_PlacementTestCorreccion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

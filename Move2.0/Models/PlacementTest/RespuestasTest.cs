@@ -19,7 +19,7 @@ namespace Move2._0.Models.PlacementTest
         public Boolean Correcta { get; set; }
 
         [Required]
-        public int PregunstasTestId { get; set; }
+        public int PreguntasTestId { get; set; }
         public PreguntasTest PreguntasTest { get; set; }
 
     }
