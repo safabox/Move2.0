@@ -337,6 +337,18 @@
     <Compile Include="Migrations\201805121903491_PlacementTestCorreccion.Designer.cs">
       <DependentUpon>201805121903491_PlacementTestCorreccion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805121907477_seedingPlacementTest.cs" />
+    <Compile Include="Migrations\201805121907477_seedingPlacementTest.Designer.cs">
+      <DependentUpon>201805121907477_seedingPlacementTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805122008221_seedingPlacementTestNivelInicial.cs" />
+    <Compile Include="Migrations\201805122008221_seedingPlacementTestNivelInicial.Designer.cs">
+      <DependentUpon>201805122008221_seedingPlacementTestNivelInicial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805122253313_seedingPlacementTestRestoNiveles.cs" />
+    <Compile Include="Migrations\201805122253313_seedingPlacementTestRestoNiveles.Designer.cs">
+      <DependentUpon>201805122253313_seedingPlacementTestRestoNiveles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Move\Curso.cs" />
@@ -580,6 +592,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805121903491_PlacementTestCorreccion.resx">
       <DependentUpon>201805121903491_PlacementTestCorreccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805121907477_seedingPlacementTest.resx">
+      <DependentUpon>201805121907477_seedingPlacementTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805122008221_seedingPlacementTestNivelInicial.resx">
+      <DependentUpon>201805122008221_seedingPlacementTestNivelInicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805122253313_seedingPlacementTestRestoNiveles.resx">
+      <DependentUpon>201805122253313_seedingPlacementTestRestoNiveles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

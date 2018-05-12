@@ -20,7 +20,7 @@ namespace Move2._0.Models.PlacementTest
         public int Numero { get; set; }
 
         [Required]
-        [Display(Name = "CantidadRespuesIncorrectas")]
+        [Display(Name = "CantidadRespuestasIncorrectas")]
         public int CantidadRespuestasIncorrectas { get; set; }
 
         public IEnumerable<PreguntasTest> PreguntasTests { get; set; }
