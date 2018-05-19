@@ -355,7 +355,7 @@ namespace Move2._0.Migrations
 
             #region Respuestas Nivel Avanzado 
             Sql("SET IdENTITY_INSERT RespuestasTest ON");
-            Sql("insert into RespuestasTest (Id,PreguntasTestId,Respuesta,Correcta) values (284,72,'A. Little dId he know',1)");
+            Sql("insert into RespuestasTest (Id,PreguntasTestId,Respuesta,Correcta) values (284,72,'A. Little did he know',1)");
             Sql("insert into RespuestasTest (Id,PreguntasTestId,Respuesta,Correcta) values (285,72,'B. Little known',1)");
             Sql("insert into RespuestasTest (Id,PreguntasTestId,Respuesta,Correcta) values (286,72,'C. Little he knew',0)");
             Sql("insert into RespuestasTest (Id,PreguntasTestId,Respuesta,Correcta) values (287,73,'A. would enjoy',0)");

@@ -220,6 +220,8 @@
     <Compile Include="Dto\PaymentDto.cs" />
     <Compile Include="Dto\ShoppingCart\FeatureDto.cs" />
     <Compile Include="Dto\ShoppingCart\ProductoDto.cs" />
+    <Compile Include="Dto\Test\PreguntasTestDto.cs" />
+    <Compile Include="Dto\Test\RespuestasTestDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -351,6 +353,10 @@
     <Compile Include="Migrations\201805122253313_seedingPlacementTestRestoNiveles.Designer.cs">
       <DependentUpon>201805122253313_seedingPlacementTestRestoNiveles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805192124378_seedingPlacementTestUpdate.cs" />
+    <Compile Include="Migrations\201805192124378_seedingPlacementTestUpdate.Designer.cs">
+      <DependentUpon>201805192124378_seedingPlacementTestUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Move\Curso.cs" />
@@ -380,6 +386,9 @@
     <Compile Include="ViewModel\ShoppingCart\PaymentViewModel.cs" />
     <Compile Include="ViewModel\ShoppingCart\ProductIndexViewModel.cs" />
     <Compile Include="ViewModel\ShoppingCart\ProductInfoViewModel.cs" />
+    <Compile Include="ViewModel\Test\TestFinViewModel.cs" />
+    <Compile Include="ViewModel\Test\TestIndexViewModel.cs" />
+    <Compile Include="ViewModel\Test\TestNivelViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -424,6 +433,8 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -493,6 +504,8 @@
     <Content Include="Views\Product\_productInfo.cshtml" />
     <Content Include="Views\Product\_FeaturesInfo.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Test\TestNivel.cshtml" />
+    <Content Include="Views\Test\TestFin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -604,6 +617,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805122253313_seedingPlacementTestRestoNiveles.resx">
       <DependentUpon>201805122253313_seedingPlacementTestRestoNiveles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805192124378_seedingPlacementTestUpdate.resx">
+      <DependentUpon>201805192124378_seedingPlacementTestUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

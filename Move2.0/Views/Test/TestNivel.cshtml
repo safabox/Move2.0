@@ -1,0 +1,75 @@
+﻿@model Move2._0.ViewModel.Test.TestNivelViewModel
+
+@{
+    ViewBag.Title = "TestNivel";
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 moveHeader visible-lg">
+            <h2 class="text-right text-bold">PLACEMENT TEST</h2>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+
+            <div>
+                <h2>Respondé las siguientes preguntas:</h2>
+            </div>
+
+            <br />
+
+            @using (Html.BeginForm("NextTestNivel", "Test", FormMethod.Post, new { @class = "form-horizontal", @name = @Model.PreguntasTestDto[0].Id, @id = @Model.PreguntasTestDto[0].Id }))
+            {
+
+                @Html.HiddenFor(model => Model.NivelTestId)
+                @Html.HiddenFor(model => Model.Nombre)
+                @Html.HiddenFor(model => Model.Email)
+
+                for (int i = 0; i < Model.PreguntasTestDto.Count; i++)
+                {
+                    @Html.HiddenFor(model => Model.PreguntasTestDto[i].Id)
+                    @Html.HiddenFor(model => Model.PreguntasTestDto[i].IdRespuesta)
+                    @Html.HiddenFor(model => Model.PreguntasTestDto[i].NivelTestId)
+                    @Html.HiddenFor(model => Model.PreguntasTestDto[i].Pregunta)
+
+                    <div class="aos-item aos-animate" data-aos="fade-up" data-aos-duration="750">
+                        <h3 class="required text-left">@Model.PreguntasTestDto[i].Pregunta</h3><br />
+                        <div id="@Model.PreguntasTestDto[i].Id">
+
+                            @{
+                                for (int j = 0; j < Model.RespuestasTestDto.Count; j++)
+                                {
+                                    if (Model.PreguntasTestDto[i].Id == Model.RespuestasTestDto[j].PreguntasTestId)
+                                    {
+                                        @Html.HiddenFor(model => Model.RespuestasTestDto[j].Id)
+                                        @Html.HiddenFor(model => Model.RespuestasTestDto[j].PreguntasTestId)
+                                        @Html.HiddenFor(model => Model.RespuestasTestDto[j].Respuesta)
+                                        @Html.HiddenFor(model => Model.RespuestasTestDto[j].Correcta)
+                                        @Html.HiddenFor(model => Model.RespuestasTestDto[j].NivelTestId)
+
+                                        @Html.RadioButtonFor(model => Model.RespustaSeleccionada[i], @Model.RespuestasTestDto[j].Id)
+                                        <label for="@Model.RespuestasTestDto[j].Id" class="required"> @Model.RespuestasTestDto[j].Respuesta </label> <br />
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+
+
+
+
+                <input type="submit" class="js-submit btn btn-success btn-lg" value="Siguiente" />
+
+            }
+
+        </div>
+
+    </div>
+
+</div>
