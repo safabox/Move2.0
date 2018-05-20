@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Move2._0.Models;
 using Move2._0.Models.Move;
 using Move2._0.Models.ShoppingCart;
+using Move2._0.Models.PlacementTest;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
@@ -55,6 +56,14 @@ namespace Move2._0.DAL
         public DbSet<Order> Order { get; set; }
         public DbSet<OrderItem> OrderItem { get; set; }
         public DbSet<OrderStatus> OrderStatus { get; set; }
+
+        #endregion
+
+        #region PlacementTest
+        public DbSet<NivelTest> NivelTest { get; set; }
+        public DbSet<PreguntasTest> PreguntasTest { get; set; }
+        public DbSet<RespuestasTest> RespuestasTest { get; set; }
+        public DbSet<PlacementTest> PlacementTest { get; set; }
 
         #endregion
 

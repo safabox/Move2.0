@@ -204,13 +204,14 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\MoodleController.cs" />
+    <Compile Include="Controllers\Api\PlacementTestController.cs" />
     <Compile Include="Controllers\Api\PreguntasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="Dto\IdentificactionDto.cs" />
     <Compile Include="Dto\Moodle\EnrolmentDto.cs" />
@@ -219,6 +220,8 @@
     <Compile Include="Dto\PaymentDto.cs" />
     <Compile Include="Dto\ShoppingCart\FeatureDto.cs" />
     <Compile Include="Dto\ShoppingCart\ProductoDto.cs" />
+    <Compile Include="Dto\Test\PreguntasTestDto.cs" />
+    <Compile Include="Dto\Test\RespuestasTestDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -330,11 +333,39 @@
     <Compile Include="Migrations\201805081620435_setOrderApprovalDateNullable.Designer.cs">
       <DependentUpon>201805081620435_setOrderApprovalDateNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805121810152_PlacementTest.cs" />
+    <Compile Include="Migrations\201805121810152_PlacementTest.Designer.cs">
+      <DependentUpon>201805121810152_PlacementTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805121903491_PlacementTestCorreccion.cs" />
+    <Compile Include="Migrations\201805121903491_PlacementTestCorreccion.Designer.cs">
+      <DependentUpon>201805121903491_PlacementTestCorreccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805121907477_seedingPlacementTest.cs" />
+    <Compile Include="Migrations\201805121907477_seedingPlacementTest.Designer.cs">
+      <DependentUpon>201805121907477_seedingPlacementTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805122008221_seedingPlacementTestNivelInicial.cs" />
+    <Compile Include="Migrations\201805122008221_seedingPlacementTestNivelInicial.Designer.cs">
+      <DependentUpon>201805122008221_seedingPlacementTestNivelInicial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805122253313_seedingPlacementTestRestoNiveles.cs" />
+    <Compile Include="Migrations\201805122253313_seedingPlacementTestRestoNiveles.Designer.cs">
+      <DependentUpon>201805122253313_seedingPlacementTestRestoNiveles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805192124378_seedingPlacementTestUpdate.cs" />
+    <Compile Include="Migrations\201805192124378_seedingPlacementTestUpdate.Designer.cs">
+      <DependentUpon>201805192124378_seedingPlacementTestUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Move\Curso.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PlacementTest\NivelTest.cs" />
+    <Compile Include="Models\PlacementTest\PlacementTest.cs" />
+    <Compile Include="Models\PlacementTest\PreguntasTest.cs" />
+    <Compile Include="Models\PlacementTest\RespuestasTest.cs" />
     <Compile Include="Models\ShoppingCart\Client.cs" />
     <Compile Include="Models\ShoppingCart\Feature.cs" />
     <Compile Include="Models\ShoppingCart\OrderStatus.cs" />
@@ -355,6 +386,9 @@
     <Compile Include="ViewModel\ShoppingCart\PaymentViewModel.cs" />
     <Compile Include="ViewModel\ShoppingCart\ProductIndexViewModel.cs" />
     <Compile Include="ViewModel\ShoppingCart\ProductInfoViewModel.cs" />
+    <Compile Include="ViewModel\Test\TestFinViewModel.cs" />
+    <Compile Include="ViewModel\Test\TestIndexViewModel.cs" />
+    <Compile Include="ViewModel\Test\TestNivelViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -399,6 +433,8 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -461,12 +497,15 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Payment\Payment.cshtml" />
-    <Content Include="Views\ShoppingCart\_ShoppingCart.cshtml" />
+    <Content Include="Views\Shared\_ShoppingCart.cshtml" />
     <Content Include="Views\Order\CheckOut.cshtml" />
     <Content Include="Views\Order\Confirmacion.cshtml" />
     <Content Include="Views\Product\Productos.cshtml" />
     <Content Include="Views\Product\_productInfo.cshtml" />
     <Content Include="Views\Product\_FeaturesInfo.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Test\TestNivel.cshtml" />
+    <Content Include="Views\Test\TestFin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -564,6 +603,24 @@
     <EmbeddedResource Include="Migrations\201805081620435_setOrderApprovalDateNullable.resx">
       <DependentUpon>201805081620435_setOrderApprovalDateNullable.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805121810152_PlacementTest.resx">
+      <DependentUpon>201805121810152_PlacementTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805121903491_PlacementTestCorreccion.resx">
+      <DependentUpon>201805121903491_PlacementTestCorreccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805121907477_seedingPlacementTest.resx">
+      <DependentUpon>201805121907477_seedingPlacementTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805122008221_seedingPlacementTestNivelInicial.resx">
+      <DependentUpon>201805122008221_seedingPlacementTestNivelInicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805122253313_seedingPlacementTestRestoNiveles.resx">
+      <DependentUpon>201805122253313_seedingPlacementTestRestoNiveles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805192124378_seedingPlacementTestUpdate.resx">
+      <DependentUpon>201805192124378_seedingPlacementTestUpdate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -580,7 +637,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50135</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
