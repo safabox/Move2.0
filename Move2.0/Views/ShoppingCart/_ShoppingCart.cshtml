@@ -1,0 +1,25 @@
+﻿@model Move2._0.Models.ShoppingCart.ShoppingCart
+<div class="row">
+    <div class="col-md-12 mr-auto text-right">
+        @{
+            var ShoppingCartCount = Model == null ? 0 : Model.Productos.Count;
+         }
+
+        <div>
+            <p> CARRO: <span>@ShoppingCartCount</span></p>
+        </div>
+
+        @HttpContext.Current.Session.SessionID
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    console.log("Hello from partial view");
+    $(document).ready(function () {
+
+        alert("Hello from Partial View");
+    });
+
+</script>    
+    
