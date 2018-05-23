@@ -27,6 +27,7 @@ namespace Move2._0.Controllers
         {
             var shoppingCart = _context.ShoppingCart.SingleOrDefault();
             return PartialView("_ShoppingCart",shoppingCart);
+
         }
     }
 }
